@@ -1,0 +1,137 @@
+---
+title: "R Notebook"
+output:
+  html_notebook: default
+  word_document: default
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+'''1. Create a R Notebook and install, at least, the following packages: tidyverse, ggplot2, skimr'''
+```
+```{r}
+install.packages("tidyverse")
+install.packages("ggplot2")
+install.packages("skimr")
+
+```
+```{r eval=FALSE, include=FALSE}
+Data Loading and Exploration (15 pts):
+a. Load the packages and load the Palmer Penguins dataset.
+b. Display the first few rows of the dataset to examine its structure.
+c. Provide a brief description of the dataset's variables.
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+palmerpenguins <- read.csv("C:/Users/bmoul/Downloads/palmerpenguins.csv")
+```
+
+
+```{r eval=FALSE, include=FALSE}
+b. Display the first few rows of the dataset to examine its structure.
+c. Provide a brief description of the dataset's variables.
+```
+```{r}
+head(palmerpenguins)
+str(palmerpenguins)
+```
+```{r}
+install.packages("dplyr")
+library(dplyr)
+```
+```{r}
+library(tidyr)
+
+```
+
+
+```{r}
+palmerpenguins %>%
+  drop_na(species,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g) %>%
+  group_by(species) %>%
+  summarise("Mean_Flipper_Length" = mean(flipper_length_mm, na.rm = TRUE),  
+    "Median_Body_Mass" = median(body_mass_g, na.rm = TRUE),        
+    "SD_Bill_Depth "= sd(bill_depth_mm, na.rm = TRUE),
+    "Max_Bill_Length" = max(bill_length_mm, na.rm = TRUE),        
+    "Min_Bill_Length"= min(bill_length_mm, na.rm = TRUE))
+View()
+```
+
+
+```{r eval=FALSE, include=FALSE}
+Apply the skimr5 package to the data 
+```
+```{r}
+```
+
+
+```{r}
+library(skimr)
+```
+```{r}
+summary_results <- skim(palmerpenguins)
+print(summary_results)
+```
+```{r eval=FALSE, include=FALSE}
+Data Visualization
+```
+```{r}
+library(ggplot2)
+```
+
+
+```{r}
+ggplot(data=palmerpenguins)+
+  geom_point(mapping = aes(x=species,y=body_mass_g,color=species))+
+  labs(title = "species and its body mass",x="species",y="body_mass")+
+  theme_minimal()
+```
+
+
+```{r}
+ggplot(data = palmerpenguins) +
+  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g),color="blue")
+```
+```{r}
+ggplot(data=palmerpenguins)+
+  geom_bar(mapping = aes(x=species,color=species))+
+  labs(title = "species count",x="species",y="count")+
+  theme_minimal()
+```
+```{r}
+ggplot(data = palmerpenguins) +
+  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g, color=species)) +
+  labs(title="Palmer Penguins: Body Mass vs. Flipper Lenght",
+       subtitle="Sample of Three Penguin Species",
+       caption = "About pegunins") +
+  annotate("text", x=220,y=3500,label="The Gentoos are the largest", color="purple",
+           fontface="bold", size=4.5, angle=25)
+```
+
+
+```{r}
+
+
+```
+```{r}
+ggplot(data=palmerpenguins)+
+  geom_boxplot (mapping = aes(x=species,y=body_mass_g,color=species))+
+  labs(title = "species and its body mass",x="species",y="body_mass")+
+  theme_minimal()
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
