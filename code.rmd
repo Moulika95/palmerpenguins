@@ -1,0 +1,203 @@
+R Notebook
+This is an R Markdown Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+Try executing this chunk by clicking the Run button within the chunk or by placing your cursor inside it and pressing Ctrl+Shift+Enter.
+
+'''1. Create a R Notebook and install, at least, the following packages: tidyverse, ggplot2, skimr'''
+Error: unexpected string constant in "'''1. Create a R Notebook and install, at least, the following packages: tidyverse, ggplot2, skimr'"
+install.packages("tidyverse")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/bmoul/AppData/Local/R/win-library/4.2’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.2/tidyverse_2.0.0.zip'
+Content type 'application/zip'downloaded 420 KB
+package ‘tidyverse’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\bmoul\AppData\Local\Temp\RtmpmORnek\downloaded_packages
+install.packages("ggplot2")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/bmoul/AppData/Local/R/win-library/4.2’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.2/ggplot2_3.4.3.zip'
+Content type 'application/zip' length 3333103 bytes (3.2 MB)
+downloaded 3.2 MB
+package ‘ggplot2’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\bmoul\AppData\Local\Temp\RtmpmORnek\downloaded_packages
+install.packages("skimr")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/bmoul/AppData/Local/R/win-library/4.2’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.2/skimr_2.1.5.zip'
+Content type 'application/zip' length 1237672 bytes (1.2 MB)
+downloaded 1.2 MB
+package ‘skimr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\bmoul\AppData\Local\Temp\RtmpmORnek\downloaded_packages
+palmerpenguins <- read.csv("C:/Users/bmoul/Downloads/palmerpenguins.csv")
+install.packages("dplyr")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/bmoul/AppData/Local/R/win-library/4.2’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.2/dplyr_1.1.3.zip'
+Content type 'application/zip' length 1556597 bytes (1.5 MB)
+downloaded 1.5 MB
+package ‘dplyr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\bmoul\AppData\Local\Temp\RtmpU1IAGN\downloaded_packages
+library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+library(tidyr)
+palmerpenguins %>%
+  drop_na(species,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g) %>%
+  group_by(species) %>%
+    "Median_Body_Mass" = median(body_mass_g, na.rm = TRUE),        # Calculate median body mass
+    "SD_Bill_Depth "= sd(bill_depth_mm, na.rm = TRUE),
+    "Max_Bill_Length" = max(bill_length_mm, na.rm = TRUE),         # Calculate maximum bill length
+    "Min_Bill_Length"= min(bill_length_mm, na.rm = TRUE))
+species
+<chr>
+Mean_Flipper_Length
+<dbl>
+Median_Body_Mass
+<dbl>
+SD_Bill_Depth
+<dbl>
+Max_Bill_Length
+<dbl>
+Min_Bill_Length
+<dbl>
+Adelie	189.9536	3700	1.2166498	46.0	32.1
+Chinstrap	195.8235	3700	1.1353951	58.0	40.9
+Gentoo	217.1870	5000	0.9812198	59.6	40.9
+3 rows
+View()
+Error in View : invalid first argument
+palmerpenguins %>%
+  drop_na(species,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g) %>%
+  group_by(species) %>%
+  summarise("Mean_Flipper_Length" = mean(flipper_length_mm, na.rm = TRUE),  
+    "Median_Body_Mass" = median(body_mass_g, na.rm = TRUE),        
+    "SD_Bill_Depth "= sd(bill_depth_mm, na.rm = TRUE),
+    "Max_Bill_Length" = max(bill_length_mm, na.rm = TRUE),        
+    "Min_Bill_Length"= min(bill_length_mm, na.rm = TRUE))
+View()
+summary_results <- skim(palmerpenguins)
+print(summary_results)
+── Data Summary ────────────────────────
+                           Values        
+Name                       palmerpenguins
+Number of columns          8             
+_______________________                  
+Column type frequency:                   
+  character                3             
+  numeric                  5             
+________________________                 
+Group variables            None          
+ 
+ 
+skim_variable
+<chr>
+n_missing
+<int>
+complete_rate
+<dbl>
+min
+<int>
+max
+<int>
+empty
+<int>
+n_unique
+<int>
+whitespace
+<int>
+1	species	0	1	6	9	0	3	0
+2	island	0	1	5	9	0	3	0
+3	sex	0	1	0	6	11	3	0
+3 rows
+ 
+ 
+skim_variable
+<chr>
+n_missing
+<int>
+complete_rate
+<dbl>
+mean
+<dbl>
+sd
+<dbl>
+p0
+<dbl>
+p25
+<dbl>
+p50
+<dbl>
+p75
+<dbl>
+1	bill_length_mm	2	0.994186	43.92193	5.4595837	32.1	39.225	44.45	48.5	
+2	bill_depth_mm	2	0.994186	17.15117	1.9747932	13.1	15.600	17.30	18.7	
+3	flipper_length_mm	2	0.994186	200.91520	14.0617137	172.0	190.000	197.00	213.0	
+4	body_mass_g	2	0.994186	4201.75439	801.9545357	2700.0	3550.000	4050.00	4750.0	
+5	year	0	1.000000	2008.02907	0.8183559	2007.0	2007.000	2008.00	2009.0	
+5 rows | 1-10 of 11 columns
+summary_results <- skim(palmerpenguins)
+print(summary_results)
+ggplot(data=palmerpenguins)+
+  geom_point(mapping = aes(x=species,y=body_mass_g,color=species))+
+  labs(title = "species and its body mass",x="species",y="body_mass")+
+  theme_minimal()
+
+
+ggplot(data = palmerpenguins) +
+  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g),color="blue")
+
+
+ggplot(data=palmerpenguins)+
+  geom_bar(mapping = aes(x=species,color=species))+
+  labs(title = "species count",x="species",y="count")+
+  theme_minimal()
+
+
+ggplot(data = palmerpenguins) +
+  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g, color=species)) +
+  labs(title="Palmer Penguins: Body Mass vs. Flipper Lenght",
+       subtitle="Sample of Three Penguin Species",
+       caption = "About pegunins") +
+  annotate("text", x=220,y=3500,label="The Gentoos are the largest", color="purple",
+           fontface="bold", size=4.5, angle=25)
+
+
+NA
+NA
+ggplot(data=palmerpenguins)+
+  geom_boxplot (mapping = aes(x=species,y=body_mass_g,color=species))+
+  labs(title = "species and its body mass",x="species",y="body_mass")+
+  theme_minimal()
+Add a new chunk by clicking the Insert Chunk button on the toolbar or by pressing Ctrl+Alt+I.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the Preview button or press Ctrl+Shift+K to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike Knit, Preview does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
