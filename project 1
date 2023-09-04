@@ -1,0 +1,26 @@
+1. Create a R Notebook and install, at least, the following packages: tidyverse, ggplot2, skimr
+2. Data Loading and Exploration (15 pts):
+a. Load the packages and load the Palmer Penguins dataset.
+b. Display the first few rows of the dataset to examine its structure.
+c. Provide a brief description of the dataset's variables.
+3. Data Summarization (30 pts):
+a. Calculate summary statistics (mean, median, standard deviation, max, and min) for
+each relevant numeric variable.
+b. Create grouped summaries based on penguin species using the `group_by` and
+`summarize` functions.
+c. Discuss the insights gained from the summarization process. Note any interesting
+patterns, anomalies, missing, etc.
+d. Apply the skimr5 package to the data and discuss the output. How does it compare
+to what you did in the previous steps? What additional information is provided?
+How is this useful?
+4. Data Visualization (30 pts):
+a. Create at least three different types of visualizations using ggplot2 (e.g., scatter plot,
+bar plot, box plot, histogram, etc.) to explore relationships between variables.
+b. Ensure appropriate labeling, coloring, and titling of the visualizations.
+c. Interpret the insights obtained from each visualization.
+5. Project Report and Interpretation (25 pts):
+a. Compile a comprehensive project report either directly in the R Notebook or, if you
+decided not to use a notebook format, an R Script plus a Word document.
+b. Summarize overall patterns, trends, or relationships you discovered. What can you
+say about each penguin?
+c. Reflect on the value of using R and the tidyverse for doing data analysis
